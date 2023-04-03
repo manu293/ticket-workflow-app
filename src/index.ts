@@ -1,5 +1,6 @@
 // imports
 import express from "express";
+import cors from "cors";
 
 // local imports
 import { db } from "./firebase";
@@ -15,6 +16,7 @@ interface ITicket {
 // defaults
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // commons
 function validateTicket(ticket: ITicket): { valid: boolean; message?: string } {
