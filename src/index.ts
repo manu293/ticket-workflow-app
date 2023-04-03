@@ -77,7 +77,7 @@ app.post("/api/v1/tickets", async (req, res) => {
 });
 
 // Update a ticket status
-app.post("/api/v1/tickets/:ticketId/status", async (req, res) => {
+app.patch("/api/v1/tickets/:ticketId/status", async (req, res) => {
   try {
     const { ticketId } = req.params;
     const { newState } = req.body;
