@@ -95,5 +95,20 @@ app.patch("/api/v1/tickets/:ticketId/status", async (req, res) => {
   }
 });
 
+// Delete a ticket
+app.delete("/api/v1/tickets/:ticketId", async (req, res) => {
+  try {
+    const { ticketId } = req.params;
+    await db.collection("tickets").doc(ticketId).delete();
+    res.status(200).json({ id: ticketId });
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(500).json({ error: error.message });
+    } else {
+      res.status(500).json({ error: "An unknown error occurred" });
+    }
+  }
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
