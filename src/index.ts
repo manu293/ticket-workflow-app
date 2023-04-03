@@ -80,11 +80,11 @@ app.post("/api/v1/tickets", async (req, res) => {
 app.patch("/api/v1/tickets/:ticketId/status", async (req, res) => {
   try {
     const { ticketId } = req.params;
-    const { newState } = req.body;
+    const { currentState } = req.body;
     await db
       .collection("tickets")
       .doc(ticketId)
-      .update({ currentState: newState });
+      .update({ currentState: currentState });
     res.status(204).end();
   } catch (error) {
     if (error instanceof Error) {
